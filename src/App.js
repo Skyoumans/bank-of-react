@@ -53,6 +53,18 @@ class App extends Component {
     return totalCredits - totalDebits
   }
 
+  addNewCredit = (newCredit) => {
+    const credits = [this.state.credits]
+    credits.push(newCredit)
+    this.setState({credits})
+  }
+
+  addNewDebit = (newDebit) => {
+    const debits = [this.state.debits]
+    debits.push(newDebit)
+    this.setState({debits})
+  }
+
   componentWillMount() {
     this.displayAllDebits()
     this.displayAllCredits()
@@ -72,11 +84,13 @@ class App extends Component {
     const DebitsPageComponent = () => (
       <DebitsPage 
         debits={this.state.debits}
+        addNewDebit={this.addNewDebit}
         accountBalance={accountBalance.toFixed(2)}{...this.props} />
     )
     const CreditsPageComponent = () => (
       <CreditsPage 
         credits={this.state.credits}
+        addNewCredit={this.addNewCredit}
         accountBalance={accountBalance.toFixed(2)}{...this.props} />
     )
   
